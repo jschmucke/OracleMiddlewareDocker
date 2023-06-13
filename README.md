@@ -1,11 +1,19 @@
 Oracle Middleware on Docker
+
+Productos de Oracle :
+====================
+- Oracle Forms & Reports
+- Oracle WebLogic Server
+- Oracle HTTP Server
+- Oracle Java Development Kit
+
+Ese repositorio contiene los archivos necesarios para crear un ambiente de Oracle Forms & Reports con docker.
+
 =====
+Repository originally forked from:
+
 ## Oracle Forms & Reports Docker Solution
 - https://github.com/DirkNachbar/Docker#oracle-forms--reports-on-docker
-
-## Oracle Traffic Director Docker Solution
-- https://github.com/DirkNachbar/Docker/tree/master/OracleOTD#oracle-traffic-director-122130-on-docker
-
 
 Oracle Forms & Reports on Docker
 =====
@@ -22,10 +30,10 @@ For a good HowTo setup your initial Docker environment, you may have a look on G
 
 The installation of docker-compose is quite simple, from your Docker host run following commands:
 
-         sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+         sudo curl -L https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
          sudo chmod +x /usr/local/bin/docker-compose
          docker-compose --version
-         docker-compose version 1.17.0, build ac53b73
+         docker-compose versionv2.18.1
 
 ## How to build Oracle Forms & Reports 12.2.1.2.0
 Get a copy of this repository on your Docker host, make sure that your Docker host have either direct Internet Connection or configure a Proxy to be able to run required `yum install` commands inside the Docker build files
