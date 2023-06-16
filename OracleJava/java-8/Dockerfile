@@ -1,11 +1,12 @@
 #
 # Dockerfile for creating Oracle JDK 1.8_151 Images based on OL latest
 #
-FROM oraclelinux:latest
+FROM oraclelinux:8-slim
 
-MAINTAINER Dirk Nachbar <https://dirknachbar.blogspot.com>
+LABEL authors="Dirk Nachbar <https://dirknachbar.blogspot.com>"
+LABEL maintainer="Jose Antonio Schmucke <https://jschmucke.medium.com>"
 
-ENV JAVA_PKG=jdk-8u151-linux-x64.tar.gz \
+ENV JAVA_PKG=jdk-8u137-linux-x64.tar.gz \
     JAVA_HOME=/usr/java/default
 
 ADD $JAVA_PKG /usr/java/
