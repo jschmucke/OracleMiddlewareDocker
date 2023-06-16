@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  oradb:
+    image: container-registry.oracle.com/database/enterprise:19.3.0.0
+    volumes:
+      - ./oradata/:/opt/oracle/oradata
+    environment:
+      - ORACLE_SID=ORCL
+      - ORACLE_EDITIONa=Tester123_
+      - ORACLE_EDITION=standard
+    shm_size: '4g'
+    ports:
+      - 1521:1521
+      - 5500:5500
+
+  formsreports:
+    build:
+      context: OracleForms
+      target: formsreports
+    volumes:
+      #- ./OracleForms/container-scripts/:/opt/container-scripts/ # to live debug
+      #- ./user_projects/:/u01/oracle/user_projects # uncomment to persist generated domain config
+    environment:
+      - DB_HOST=oradb
+      - DB_SERVICE=orclpdb1
+      - DBUSER=sys
+      - DBPWD=Example123_
+      - COMPONENTPWD=Example123_
+
+      - SKIP_CRU_DROP=false # drop RCU REPO on first run
+      - SKIP_CRU_SCRIPT=false # first run - this generated to /tmp/rcu-script SQL to be used if rcu utility can not be executed directly (e.g. Autonomous DB on OCI)
+      - SKIP_CRU_CREATE=false # create RCU REPO on first run
+
+      - DEBUG_SLEEP=false # main launcher scripts launches only sleep instead of real application - used for debugging and troubleshooting
+    ports:
+      - 7001:7001 # Weblogic (https for /console and /em)
+      - 9011:9001 # FORMS
+      - 9012:9002 # REPORTS
+
